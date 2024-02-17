@@ -251,7 +251,7 @@ function checkWorld(world)
         listenEvents(5)
         sleep(10000)
         if cok == 5 then
-            botInfo(bot.name.. , " can't entering world ||"..world:match("(.+)|"):upper().."|| , disconnect 10 minutes while server sucks @everyone")
+            botInfo(bot.name, " can't entering world ||"..world:match("(.+)|"):upper().."|| , disconnect 10 minutes while server sucks @everyone")
             sleep(100)
             while bot.status == BotStatus.online do
                 bot:disconnect()
