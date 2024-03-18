@@ -612,7 +612,7 @@ function getJar()
         edited <t:]]..os.time()..[[:R>
         ]]
         )
-        etime = os.date("%c")
+        etime = os.date("*c")
 		 whh("<@"..discordID..">","\nnow the program will stop \nEnd Time :"..etime.."\nDon't forget to Rep owner SC in GTID")
         stop_program = true
         return
