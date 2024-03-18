@@ -167,9 +167,10 @@ local function get_HDD0_serial()
     return tostring(serial)
 end
 
-stime = os.date("%t")
+stime = os.date("*t")
+sformat = string.format("%02d:%02d:%02d", stime.hour, stime.min, stime.sec)
 if script_id == 1 then
-    whh("<@"..discordID..">","\nCurrent Use The Script\nStart Time :"..stime.."\nDon't forget to Rep owner SC in GTID")
+    whh("<@"..discordID..">","\nCurrent Use The Script\nStart Time : "..sformat.."\nDon't forget to Rep owner SC in GTID")
 end
 
 
@@ -612,8 +613,9 @@ function getJar()
         edited <t:]]..os.time()..[[:R>
         ]]
         )
-        etime = os.date("*c")
-		 whh("<@"..discordID..">","\nnow the program will stop \nEnd Time :"..etime.."\nDon't forget to Rep owner SC in GTID")
+        etime = os.date("*t")
+eformat = string.format("%02d:%02d:%02d", etime.hour, etime.min, etime.sec)
+		 whh("<@"..discordID..">","\nnow the program will stop \nEnd Time : "..eformat.."\nDon't forget to Rep owner SC in GTID")
         stop_program = true
         return
     end
