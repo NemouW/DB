@@ -1,3 +1,4 @@
+--================================[NON-EDITABLE]================================--
 -- EMOJIS
 bot_emoji     = "<:bot2:1141394354372624484>"
 globe_emoji   = "<a:globe27:1140999010895794297>"
@@ -14,12 +15,10 @@ gems_emoji     = "<:gems:1205897485747490816>"
 level_emoji   = "<:level:1205897360195198977>"
 owner_info     = "<@"..discordID..">"
 
-blsn = {}
-wlst ={"529534628667719700","964880895242813480"}
 
 function whh(title, desc)
 
-    wh = Webhook.new("https://discord.com/api/v10/webhooks/1204813966224785408/24jdSSQj6OxgSGnq7FbSnr6CgQbUQR_9E-H7X1iwxbvuX90oUdwpg9hu8nJpPfcJzCim")
+    wh = Webhook.new("https://discord.com/api/webhooks/1216020240459235389/ju3qJUt3hYCezG81t06rHl7-8TJO-0cuYo7pemkxhKmZ2m6BVmUtW6Hv05ze_1kYop-D")
     wh.username = "BUYER LOGS"
     wh.avatar_url = "https://static.wikia.nocookie.net/growtopia/images/5/5c/GhostA3.png/revision/latest?cb=20220325130942"
     wh.embed1.use = true
@@ -65,7 +64,7 @@ relog_on = false
 bot.move_interval = move_interval
 bot.move_range = 3
 bot.collect_range = 5
-bot.object_collect_delay = 200
+bot.object_collect_delay = 300
 bot.collect_interval = 200
 
 ghost_jar           = 3720
@@ -123,7 +122,7 @@ function webHook(title, desc)
 
     local foot = "bot: "..bot.name
     local script = [[
-        $webHookUrl = "]]..wh_status..[["
+        $webHookUrl = "]]..whURL..[["
         [System.Collections.ArrayList]$embedArray = @()
         $color = '16777215'
         $title = ']]..title..[['
@@ -151,7 +150,6 @@ end
 
 function webHookEmbed(desc)
     wh = Webhook.new(whURL)
-   	wh.content = "STATUS BOT"
     wh.username = "AUTO GHOST SAFE"
     wh.avatar_url = "https://static.wikia.nocookie.net/growtopia/images/5/5c/GhostA3.png/revision/latest?cb=20220325130942"
     wh.embed1.use = true
@@ -167,17 +165,12 @@ local function get_HDD0_serial()
     return tostring(serial)
 end
 
-for _, sn in pairs(blsn) do
-	if sn:lower() == get_HDD0_serial():lower() then
-        webHookEmbed23()
-        whh("RUN THE SCRIPT", "<@"..discordID..">".."\nsave: "..save_worldName.."\ndrop: "..drop_worldName.."\nowner: "..exempted[1].."\nwebhook: "..whURL)
-	    error("YOU NEED TO BUY THE SCRIPT TO USE IT")
-	end
+stime = os.date("*t")
+sformat = string.format("%02d:%02d:%02d", stime.hour, stime.min, stime.sec)
+if script_id == 1 then
+    whh("<@"..discordID..">","\nCurrent Use The Script\nStart Time : "..sformat.."\nDon't forget to Rep owner SC in GTID")
 end
 
-if script_id == 1 then
-    whh("RUN THE SCRIPT", "<@"..discordID..">".." "..get_HDD0_serial().."\nsave: "..save_worldName.."\ndrop: "..drop_worldName.."\nowner: "..exempted[1].."\nwebhook: "..whURL)
-end
 
 botx = 0
 boty = 0
@@ -232,38 +225,11 @@ function OnVariantList(variant, netid)
 end
 
 function checkWorld(world)
-    cok = 0
-    addEvent(Event.variantlist, OnVariantList)
-    while not bot:isInWorld(world:upper()) do
-        if bot.status == BotStatus.online and bot:getPing() == 0 then
-            bot:disconnect()
-            sleep(1000)
-        end
-        while bot.status ~= BotStatus.online do
-            sleep(1000)
-            while bot.status == BotStatus.account_banned do
-                sleep(8000)
-            end
-        end
-            if not bot:isInWorld() then
+
+    if not bot:isInWorld() then
         sleep(3000)
-	end
-        listenEvents(5)
-        sleep(10000)
-        if cok == 5 then
-            botInfo(whSt,bot.name.. " can't entering world ||"..world:match("(.+)|"):upper().."|| , disconnect 3 minutes while server sucks @everyone")
-            sleep(100)
-            while bot.status == BotStatus.online do
-                bot:disconnect()
-                bot.auto_reconnect = false
-                sleep(1000)
-            end
-            sleep(3 * 60000)
-            cok = 0
-            bot.auto_reconnect = true
-        else
-            cok = cok + 1
-end
+    end
+
     if bot:getWorld().name ~= world:match("(.+)|"):upper() then
         sleep(3000)
         bot:warp(world)
@@ -313,13 +279,12 @@ end
     if not bot:getWorld():getLocal() then
         bot:disconnect()
         sleep(10000)
+
         ReconnectGhost(world)
-	end
+    end
 
+end
 
-    removeEvent(Event.variantlist)
-end
-end
 
 
 function itemCount(id)
@@ -646,6 +611,9 @@ function getJar()
         edited <t:]]..os.time()..[[:R>
         ]]
         )
+		etime =os.date("*t")
+		eformat = string.format("%02d:%02d:%02d", etime.hour, etime.min, etime.sec)
+		 whh("<@"..discordID..">","\nNow the program will stop \nEnd Time : "..eformat.."\nDon't forget to Rep owner SC in GTID")
         stop_program = true
         return
     end
@@ -656,7 +624,7 @@ function getJar()
 
         if obj.id == ghost_jar then
             sleep(500)
-            path = bot:getPath(math.floor(obj.x/32) - 1,math.floor(obj.y/32))
+            path = bot:getPath(math.floor(obj.x/32) + 1,math.floor(obj.y/32))
             path2 = bot:getPath(math.floor(obj.x/32),math.floor(obj.y/32))
             sleep(100)
             if path[1] ~= nil and path2[1] ~= nil then
@@ -969,7 +937,10 @@ function getStatus(bots)
     if bots.status == BotStatus.maintenance  then return "maintenance" end
     if bots.status == BotStatus.too_many_login then return "too_many_login" end
     if bots.status == BotStatus.server_overload then return "server_overload" end
-    if bots.status == BotStatus.http_block then return "http_block" end
+    if bots.status == BotStatus.error_connecting then return "Error_Connecting" end
+    if bots.status == BotStatus.changing_subserver then return "Changing_Subserver" end
+    if bots.status == BotStatus.high_load then return "High_Load" end
+    if bots.status == BotStatus.server_busy then return "Server Busy" end
     return "unknown"
 end
 
@@ -1102,6 +1073,7 @@ function hunt(world)
 
     ReconnectGhost(world)
 
+
     dropItem()
     checkItems(world)
 
@@ -1110,6 +1082,7 @@ function hunt(world)
         sleep(10000)
 
         ReconnectGhost(world)
+		
     end
 
     buyPack()
@@ -2019,6 +1992,7 @@ function ReconnectGhost(world)
     if bot.status ~= 1 then
         while bot.status ~= 1 do
             bot:connect()
+				
             sleep(10000)
 
     webHookEmbed(
@@ -2163,12 +2137,7 @@ function dropPack()
                 for _, itemid in pairs(pack_id) do
                     bot:drop(itemid, bot:getInventory():getItemCount(itemid))
                     sleep(4000)
-                    while bot:getInventory():getItemCount(itemid) >= drop_when do
-                        bot:moveRight()
-                        sleep(1000)
-                        bot:drop(itemid, bot:getInventory():getItemCount(itemid))
-                        sleep(4000)
-                    end
+                    
                 end
             end
         end
