@@ -1,5 +1,3 @@
-
-
 --================================[NON-EDITABLE]================================--
 -- EMOJIS
 bot_emoji     = "<:bot2:1141394354372624484>"
@@ -613,9 +611,9 @@ function getJar()
         edited <t:]]..os.time()..[[:R>
         ]]
         )
-        etime = os.date("*t")
-eformat = string.format("%02d:%02d:%02d", etime.hour, etime.min, etime.sec)
-		 whh("<@"..discordID..">","\nnow the program will stop \nEnd Time : "..eformat.."\nDon't forget to Rep owner SC in GTID")
+		etime =os.date("*t")
+		eformat = string.format("%02d:%02d:%02d", etime.hour, etime.min, etime.sec)
+		 whh("<@"..discordID..">","\nNow the program will stop \nEnd Time : "..eformat.."\nDon't forget to Rep owner SC in GTID")
         stop_program = true
         return
     end
