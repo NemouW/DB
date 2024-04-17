@@ -624,7 +624,7 @@ function getJar()
 
         if obj.id == ghost_jar then
             sleep(500)
-            path = bot:getPath(math.floor(obj.x/32) + 1,math.floor(obj.y/32))
+            path = bot:getPath(math.floor(obj.x/32),math.floor(obj.y/32))
             path2 = bot:getPath(math.floor(obj.x/32),math.floor(obj.y/32))
             sleep(100)
             if path[1] ~= nil and path2[1] ~= nil then
